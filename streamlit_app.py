@@ -1,6 +1,8 @@
 import streamlit as st
 from transformers import pipeline
+import os
 
+hf_api_key = os.getenv("HUGGING_FACE_API_KEY")
 # Load the summarization pipeline with your pre-trained model
 pipe = pipeline("summarization", model="paramasivan27/bart_for_email_summarization_enron")
 
