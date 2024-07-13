@@ -9,6 +9,7 @@ pipe = pipeline("summarization", model="paramasivan27/bart_for_email_summarizati
 # Function to summarize email
 def summarize_email(email_body, pipeline):
     # Tokenize the input text
+    print("Tokenizer")
     input_tokens = pipeline.tokenizer(email_body, return_tensors='pt', truncation=True, padding='max_length', max_length=1024)
     input_length = input_tokens['input_ids'].shape[1]
     
@@ -36,7 +37,9 @@ email_body = st.text_area("Enter the email body:", height=300)
 # Button to generate subject line
 if st.button("Generate Subject Line"):
     if email_body:
+        print("before calling summarize")
         summary = summarize_email(email_body, pipe)
+        print("after calling summarize")
         st.subheader("Generated Subject Line:")
         st.write(summary)
     else:
